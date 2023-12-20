@@ -1,82 +1,34 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React from "react";
 
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { apiUrl } from "../utils/helpers";
-import { useLocation, useNavigate } from "react-router-dom";
-import moment from "moment";
-import { createPost, updatePost } from "../api/posts";
-import { useMutation } from "@tanstack/react-query";
-import { queryClient } from "../main";
+import { Controller } from "react-hook-form";
+import useCreatePostForm from "../hooks/useCreatePostForm";
 
 const Write = () => {
-  const navigate = useNavigate();
-  const state = useLocation().state;
-  const [value, setValue] = useState(state?.desc || "");
-  const [title, setTitle] = useState(state?.title || "");
-  const [cat, setCat] = useState(state?.cat || "");
-  const [file, setFile] = useState(null);
-
-  const { mutate, isLoading, isError, error } = useMutation({
-    mutationFn: state ? updatePost : createPost,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["posts"] });
-      navigate("/");
-    },
-  });
-
-  console.log(state);
-
-  const upload = async () => {
-    try {
-      const formData = new FormData();
-      formData.append("file", file);
-      const res = await axios.post(`${apiUrl}/upload`, formData);
-      return res.data;
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const imgUrl = file ? await upload() : state.img || null;
-    const postData = {
-      title,
-      desc: value,
-      category: cat,
-      img: !imgUrl ? "" : file ? "uploads/" + imgUrl : imgUrl,
-    };
-
-    if (state) {
-      mutate({ ...postData, id: state._id });
-    } else {
-      mutate({
-        ...postData,
-        date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
-      });
-    }
-  };
+  const { register, handleSubmit, errors, control } = useCreatePostForm();
 
   return (
-    <div className="add">
+    <form className="add" onSubmit={handleSubmit}>
       <div className="content">
-        <input
-          type="text"
-          value={title}
-          placeholder="Title"
-          onChange={(e) => setTitle(e.target.value)}
-        />
+        <input {...register("title")} type="text" placeholder="Title" />
+        {errors.title && <p className="error">{errors.title.message}</p>}
         <div className="editorContainer">
-          <ReactQuill
-            className="editor"
-            theme="snow"
-            placeholder="Description"
-            value={value}
-            onChange={setValue}
+          <Controller
+            name="desc"
+            control={control}
+            render={({ field }) => (
+              <ReactQuill
+                className="editor"
+                theme="snow"
+                placeholder="Description"
+                onChange={(value) => field.onChange(value)}
+                value={field.value}
+              />
+            )}
           />
         </div>
+        {errors.desc && <p className="error">{errors.desc.message}</p>}
       </div>
       <div className="menu">
         <div className="item">
@@ -87,92 +39,138 @@ const Write = () => {
           <span>
             <b>Visibility:</b> Public
           </span>
-          <input
-            style={{ display: "none" }}
-            type="file"
-            name="file"
-            id="file"
-            onChange={(e) => setFile(e.target.files[0])}
-          />
-          <label className="file" htmlFor="file">
+          <label className="file" htmlFor="image.file">
             Upload Image
+            <Controller
+              name="image.file"
+              control={control}
+              render={({ field }) => (
+                <input
+                  style={{ display: "none" }}
+                  id="image.file"
+                  type="file"
+                  onChange={(e) => field.onChange(e.target.files[0])}
+                />
+              )}
+            />
+            {errors.image?.file && (
+              <p className="error">{errors.image.file.message}</p>
+            )}
           </label>
           <div className="buttons">
             <button>Save as a draft</button>
-            <button onClick={handleSubmit}>Publish</button>
+            <button type="submit">Publish</button>
           </div>
         </div>
         <div className="item">
           <h1>Category</h1>
           <div className="cat">
-            <input
-              type="radio"
-              checked={cat === "art"}
-              name="cat"
-              value="art"
-              id="art"
-              onChange={(e) => setCat(e.target.value)}
-            />
-            <label htmlFor="art">Art</label>
+            <label htmlFor="art">
+              <Controller
+                control={control}
+                name="cat"
+                render={({ field }) => (
+                  <input
+                    type="radio"
+                    value="art"
+                    checked={field.value === "art"}
+                    onChange={() => field.onChange("art")}
+                  />
+                )}
+              />
+              Art
+            </label>
           </div>
           <div className="cat">
-            <input
-              type="radio"
-              checked={cat === "science"}
-              name="cat"
-              value="science"
-              id="science"
-              onChange={(e) => setCat(e.target.value)}
-            />
-            <label htmlFor="science">science</label>
+            <label htmlFor="science">
+              <Controller
+                control={control}
+                name="cat"
+                render={({ field }) => (
+                  <input
+                    type="radio"
+                    value="science"
+                    checked={field.value === "science"}
+                    onChange={() => field.onChange("science")}
+                  />
+                )}
+              />
+              science
+            </label>
           </div>
           <div className="cat">
-            <input
-              type="radio"
-              checked={cat === "technology"}
-              name="cat"
-              value="technology"
-              id="technology"
-              onChange={(e) => setCat(e.target.value)}
-            />
-            <label htmlFor="technology">technology</label>
+            <label htmlFor="technology">
+              <Controller
+                control={control}
+                name="cat"
+                render={({ field }) => (
+                  <input
+                    type="radio"
+                    value="technology"
+                    checked={field.value === "technology"}
+                    onChange={() => field.onChange("technology")}
+                  />
+                )}
+              />
+              technology
+            </label>
           </div>
           <div className="cat">
-            <input
-              type="radio"
-              checked={cat === "cinema"}
-              name="cat"
-              value="cinema"
-              id="cinema"
-              onChange={(e) => setCat(e.target.value)}
-            />
-            <label htmlFor="cinema">cinema</label>
+            <label htmlFor="cinema">
+              <Controller
+                control={control}
+                name="cat"
+                render={({ field }) => (
+                  <input
+                    type="radio"
+                    value="cinema"
+                    checked={field.value === "cinema"}
+                    onChange={() => field.onChange("cinema")}
+                  />
+                )}
+              />
+              cinema
+            </label>
           </div>
           <div className="cat">
-            <input
-              type="radio"
-              checked={cat === "design"}
-              name="cat"
-              value="design"
-              id="design"
-              onChange={(e) => setCat(e.target.value)}
-            />
-            <label htmlFor="design">design</label>
+            <label htmlFor="design">
+              <Controller
+                control={control}
+                name="cat"
+                render={({ field }) => (
+                  <input
+                    type="radio"
+                    value="design"
+                    checked={field.value === "design"}
+                    onChange={() => field.onChange("design")}
+                  />
+                )}
+              />
+              design
+            </label>
           </div>
           <div className="cat">
-            <input
-              type="radio"
-              checked={cat === "food"}
-              name="cat"
-              value="food"
-              id="food"
-              onChange={(e) => setCat(e.target.value)}
-            />
-            <label htmlFor="food">food</label>
+            <label htmlFor="food">
+              <Controller
+                control={control}
+                name="cat"
+                render={({ field }) => (
+                  <input
+                    type="radio"
+                    value="food"
+                    checked={field.value === "food"}
+                    onChange={() => field.onChange("food")}
+                  />
+                )}
+              />
+              food
+            </label>
           </div>
+          {errors.cat && <p className="error">{errors.cat.message}</p>}
         </div>
       </div>
-    </div>
+      {errors.general && <p className="error">{errors.general.message}</p>}
+    </form>
   );
 };
 
