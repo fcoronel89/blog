@@ -1,46 +1,32 @@
-import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { register } from '../api/auth'
+import React from "react";
+import { Link } from "react-router-dom";
+import useSignUpForm from "../hooks/useSignUpForm";
 
 const Register = () => {
-  const navigate = useNavigate();
-  const [inputs, setInputs] = useState({
-    userName: '',
-    email: '',
-    password: '',
-  })
+  const { register, handleSubmit, errors } = useSignUpForm();
 
-  const [err, setErr] = useState(null)
-
-  const handleChange = (e) => {
-    setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  }
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    try {
-      await register(inputs)
-      navigate('/login')
-    } catch (err) {
-      console.log(err);
-      setErr(err.response.data.message);
-    }
-  }
-
-  console.log(inputs)
   return (
-    <div className='auth'>
+    <div className="auth">
       <h1>Register</h1>
-      <form>
-        <input required type="text" name='userName' placeholder='userName' value={inputs.userName} onChange={handleChange} />
-        <input required type="email" name='email' placeholder='email' value={inputs.email} onChange={handleChange} />
-        <input required type="password" name='password' placeholder='password' value={inputs.password} onChange={handleChange} />
-        <button onClick={handleSubmit}>Register</button>
-        {err && <p>{err}</p>}
-        <span>Do you have an account? <Link to="/login">Login</Link></span>
+      <form onSubmit={handleSubmit}>
+        <input {...register("userName")} type="text" placeholder="userName" />
+        {errors.userName && <p>{errors.userName.message}</p>}
+        <input {...register("email")} type="email" placeholder="email" />
+        {errors.email && <p>{errors.email.message}</p>}
+        <input
+          {...register("password")}
+          type="password"
+          placeholder="password"
+        />
+        {errors.password && <p>{errors.password.message}</p>}
+        <button type="submit">Register</button>
+        {errors.general && <p>{errors.general.message}</p>}
+        <span>
+          Do you have an account? <Link to="/login">Login</Link>
+        </span>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;

@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AuthContext } from "../context/authContext";
-import { loginSchema } from "../lib/loginSchema";
+import { loginSchema } from "../lib/validationSchemas";
 import { useNavigate } from "react-router-dom";
 
 const useLoginForm = () => {
