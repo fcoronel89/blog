@@ -3,9 +3,9 @@ import Logo from "../img/logo.png";
 
 const Footer = () => {
   return (
-    <footer>
+    <footer className="container">
       <img src={Logo} alt="" />
-      <span>Made with ❤️ and <b>ReactJS</b>.</span>
+      <span>Copyright &copy; 2024 Argentina Magica. Todos los derechos reservados.</span>
     </footer>
   );
 };

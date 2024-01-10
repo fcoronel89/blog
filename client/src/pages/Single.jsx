@@ -37,7 +37,7 @@ const Single = () => {
   };
 
   return (
-    <div className="single">
+    <div className="single container">
       {isLoading && "Loading..."}
       {isError && error.message}
       {!isLoading && !isError && post && (

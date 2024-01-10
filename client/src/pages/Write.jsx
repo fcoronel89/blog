@@ -9,7 +9,7 @@ const Write = () => {
   const { register, handleSubmit, errors, control } = useCreatePostForm();
 
   return (
-    <form className="add" onSubmit={handleSubmit}>
+    <form className="add container" onSubmit={handleSubmit}>
       <div className="content">
         <input {...register("title")} type="text" placeholder="Title" />
         {errors.title && <p className="error">{errors.title.message}</p>}

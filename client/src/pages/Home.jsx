@@ -2,38 +2,52 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getPosts } from "../api/posts";
-import { getTextFromHTML } from "../utils/helpers";
+import "./Home.scss";
+import { Box, Grid, Typography } from "@mui/material";
+import HomeHeader from "../components/HomeHeader";
+import "../components/HomeHeader.scss";
 
 const Home = () => {
   const cat = useLocation().search;
-  const { isLoading, isError, error, data: posts } = useQuery({ 
-    queryKey: ["posts", cat], 
+  const {
+    isLoading,
+    isError,
+    error,
+    data: posts,
+  } = useQuery({
+    queryKey: ["posts", cat],
     queryFn: () => getPosts(cat),
-    select: ({data}) => data
+    select: ({ data }) => data,
   });
 
-  
   return (
-    <div className="home">
-      <div className="posts">
-        {isLoading && "Loading..."}
-        {isError && error.message}
-        {!isLoading && !isError && posts.map((post) => (
-          <div className="post" key={post._id}>
-            <div className="img">
-              <img src={post.img} alt="" />
-            </div>
-            <div className="content">
-              <Link className="link" to={`/post/${post._id}`}>
-                <h1>{post.title}</h1>
-              </Link>
-              <p>{getTextFromHTML(post.desc)}</p>
-              <button>Read More</button>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
+    <section className="home">
+      <HomeHeader />
+      <Box className="container posts">
+        <Grid container columnSpacing={3} rowSpacing={3}>
+          {isLoading && "Loading..."}
+          {isError && error.message}
+          {!isLoading &&
+            !isError &&
+            posts.map((post) => (
+              <Grid item xs={4} key={post._id}>
+                <Box
+                  className="post-card"
+                  style={{ backgroundImage: `url(${post.img})` }}
+                >
+                  <Box className="post-info">
+                    <Link className="link" to={`/post/${post._id}`}>
+                      <Typography variant="h5" component="h2">
+                        {post.title}
+                      </Typography>
+                    </Link>
+                  </Box>
+                </Box>
+              </Grid>
+            ))}
+        </Grid>
+      </Box>
+    </section>
   );
 };
 

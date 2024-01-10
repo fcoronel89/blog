@@ -1,385 +1,297 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #040211;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#root,
+html {
+  width: 100%;
+  min-height: 100vh;
+}
+
+body, h6 {
+  margin: 0;
+}
+
 $lightGreen: #b9e7e7;
 
 p {
   margin: 0;
 }
 
-.app {
-  display: flex;
-  justify-content: center;
-  .container {
-    width: 1024px;
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
-    .link {
-      text-decoration: none;
-      color: inherit;
+.app {
+  .container {
+    max-width: 70rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  //Login and Register
+
+  .auth {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: $lightGreen;
+    flex-direction: column;
+
+    h1 {
+      font-size: 20px;
+      color: teal;
+      margin-bottom: 20px;
     }
 
-    //Login and Register
-
-    .auth {
+    form {
       display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: $lightGreen;
       flex-direction: column;
+      padding: 50px;
+      background-color: white;
+      width: 200px;
+      gap: 20px;
+
+      input {
+        padding: 10px;
+        border: none;
+        border-bottom: 1px solid gray;
+      }
+
+      button {
+        padding: 10px;
+        border: none;
+        background-color: teal;
+        color: white;
+        cursor: pointer;
+      }
+
+      span,
+      p {
+        font-size: 12px;
+        text-align: center;
+      }
+
+      p {
+        color: red;
+      }
+    }
+  }
+
+  //Navbar
+
+  footer {
+    margin-top: 100px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    img {
+      height: 50px;
+    }
+  }
+
+  // Single
+  .single {
+    display: flex;
+    gap: 50px;
+
+    .content {
+      flex: 5;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+
+      img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+      }
+
+      .user {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 14px;
+        img {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+        span {
+          font-weight: bold;
+        }
+      }
+
+      .edit {
+        display: flex;
+        gap: 5px;
+
+        img {
+          width: 20px;
+          height: 20px;
+          cursor: pointer;
+        }
+      }
+
+      h1 {
+        font-size: 42px;
+        color: #333;
+      }
+
+      p {
+        text-align: justify;
+        line-height: 30px;
+      }
+    }
+
+    .menu {
+      flex: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
 
       h1 {
         font-size: 20px;
-        color: teal;
-        margin-bottom: 20px;
+        color: #555;
       }
 
-      form {
+      .post {
         display: flex;
         flex-direction: column;
-        padding: 50px;
-        background-color: white;
-        width: 200px;
-        gap: 20px;
-
-        input {
-          padding: 10px;
-          border: none;
-          border-bottom: 1px solid gray;
-        }
-
-        button {
-          padding: 10px;
-          border: none;
-          background-color: teal;
-          color: white;
-          cursor: pointer;
-        }
-
-        span,
-        p {
-          font-size: 12px;
-          text-align: center;
-        }
-
-        p {
-          color: red;
-        }
-      }
-    }
-
-    //Navbar
-    .navbar {
-      .container {
-        padding: 10px 0px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        .logo {
-          img {
-            width: 120px;
-          }
-        }
-        .links {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-
-          h6 {
-            font-size: 16px;
-            font-weight: 300;
-          }
-
-          span {
-            cursor: pointer;
-          }
-
-          .write {
-            background-color: $lightGreen;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 300;
-            border: 1px solid white;
-
-            &:hover {
-              color: teal;
-              background-color: white;
-              border: 1px solid teal;
-            }
-          }
-        }
-      }
-    }
-    footer {
-      margin-top: 100px;
-      padding: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background-color: $lightGreen;
-      font-size: 12px;
-      img {
-        height: 50px;
-      }
-    }
-
-    // Home
-    .home {
-      .posts {
-        margin-top: 50px;
-        display: flex;
-        flex-direction: column;
-        gap: 150px;
-
-        .post {
-          display: flex;
-          gap: 100px;
-
-          &:nth-child(2n + 1) {
-            flex-direction: row-reverse;
-          }
-
-          .img {
-            flex: 2;
-            position: relative;
-
-            &::after {
-              content: "";
-              width: 100%;
-              height: 100%;
-              position: absolute;
-              top: 20px;
-              left: -20px;
-              z-index: -1;
-              background-color: $lightGreen;
-            }
-
-            img {
-              width: 100%;
-              max-height: 400px;
-              object-fit: cover;
-            }
-          }
-
-          .content {
-            flex: 3;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-
-            h1 {
-              font-size: 48px;
-            }
-
-            p {
-              font-size: 18px;
-            }
-
-            button {
-              width: max-content;
-              padding: 10px 20px;
-              border: none;
-              cursor: pointer;
-              background-color: white;
-              border: 1px solid teal;
-              color: teal;
-
-              &:hover {
-                border: 1px solid white;
-                background-color: $lightGreen;
-                color: black;
-              }
-            }
-          }
-        }
-      }
-    }
-
-    // Single
-    .single {
-      display: flex;
-      gap: 50px;
-
-      .content {
-        flex: 5;
-        display: flex;
-        flex-direction: column;
-        gap: 30px;
+        gap: 10px;
 
         img {
           width: 100%;
-          height: 300px;
+          max-height: 200px;
           object-fit: cover;
         }
 
-        .user {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          font-size: 14px;
-          img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-          }
-          span {
-            font-weight: bold;
-          }
-        }
-
-        .edit {
-          display: flex;
-          gap: 5px;
-
-          img {
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
-          }
-        }
-
-        h1 {
-          font-size: 42px;
-          color: #333;
-        }
-
-        p {
-          text-align: justify;
-          line-height: 30px;
-        }
-      }
-
-      .menu {
-        flex: 2;
-        display: flex;
-        flex-direction: column;
-        gap: 25px;
-
-        h1 {
-          font-size: 20px;
+        h2 {
           color: #555;
         }
 
-        .post {
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
+        button {
+          width: max-content;
+          padding: 7.5px 15px;
+          border: none;
+          cursor: pointer;
+          background-color: white;
+          border: 1px solid teal;
+          color: teal;
 
-          img {
-            width: 100%;
-            max-height: 200px;
-            object-fit: cover;
-          }
-
-          h2 {
-            color: #555;
-          }
-
-          button {
-            width: max-content;
-            padding: 7.5px 15px;
-            border: none;
-            cursor: pointer;
-            background-color: white;
-            border: 1px solid teal;
-            color: teal;
-
-            &:hover {
-              border: 1px solid white;
-              background-color: $lightGreen;
-              color: black;
-            }
+          &:hover {
+            border: 1px solid white;
+            background-color: $lightGreen;
+            color: black;
           }
         }
       }
     }
+  }
 
-    .add {
+  .add {
+    display: flex;
+    margin-top: 20px;
+    gap: 20px;
+
+    .content {
+      flex: 5;
       display: flex;
-      margin-top: 20px;
+      flex-direction: column;
       gap: 20px;
 
-      .content {
-        flex: 5;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-
-        input {
-          padding: 10px;
-          border: 1px solid lightgray;
-        }
-
-        .editorContainer {
-          height: 300px;
-          overflow: scroll;
-          border: 1px solid lightgray;
-
-          .editor {
-            height: 100%;
-            border: none;
-          }
-        }
+      input {
+        padding: 10px;
+        border: 1px solid lightgray;
       }
 
-      .error {
-        color: red;
-      }
+      .editorContainer {
+        height: 300px;
+        overflow: scroll;
+        border: 1px solid lightgray;
 
-      .menu {
-        flex: 2;
+        .editor {
+          height: 100%;
+          border: none;
+        }
+      }
+    }
+
+    .error {
+      color: red;
+    }
+
+    .menu {
+      flex: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      .item {
+        border: 1px solid lightgray;
+        padding: 10px;
+        flex: 1;
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        justify-content: space-between;
+        font-size: 12px;
+        color: #555;
 
-        .item {
-          border: 1px solid lightgray;
-          padding: 10px;
-          flex: 1;
+        h1 {
+          font-size: 20px;
+        }
+
+        .file {
+          text-decoration: underline;
+          cursor: pointer;
+        }
+
+        .buttons {
           display: flex;
-          flex-direction: column;
           justify-content: space-between;
-          font-size: 12px;
-          color: #555;
 
-          h1 {
-            font-size: 20px;
-          }
-
-          .file {
-            text-decoration: underline;
+          :first-child {
             cursor: pointer;
-          }
-
-          .buttons {
-            display: flex;
-            justify-content: space-between;
-
-            :first-child {
-              cursor: pointer;
-              color: teal;
-              background-color: white;
-              border: 1px solid teal;
-              padding: 3px 5px;
-            }
-
-            :last-child {
-              cursor: pointer;
-              color: white;
-              background-color: teal;
-              border: 1px solid teal;
-              padding: 3px 5px;
-            }
-          }
-
-          .cat {
-            display: flex;
-            align-items: center;
-            gap: 2px;
             color: teal;
+            background-color: white;
+            border: 1px solid teal;
+            padding: 3px 5px;
           }
+
+          :last-child {
+            cursor: pointer;
+            color: white;
+            background-color: teal;
+            border: 1px solid teal;
+            padding: 3px 5px;
+          }
+        }
+
+        .cat {
+          display: flex;
+          align-items: center;
+          gap: 2px;
+          color: teal;
         }
       }
     }

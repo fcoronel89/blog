@@ -6,6 +6,16 @@ import Single from "./pages/Single";
 import Write from "./pages/Write";
 import Layout from "./pages/Layout";
 import "./style.scss";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+  },
+  typography: {
+    fontFamily: "Poppins, sans-serif",
+  },
+});
 
 const router = createBrowserRouter([
   {
@@ -38,11 +48,11 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <div className="app">
-      <div className="container">
+    <ThemeProvider theme={darkTheme}>
+      <div className="app">
         <RouterProvider router={router} />
       </div>
-    </div>
+    </ThemeProvider>
   );
 }
 
