@@ -3,9 +3,12 @@
 $lightGreen: #b9e7e7;
 .single {
     color: #000;
-    margin-top: 7rem;
+    background: #fff;
+    padding: 5rem 1.5rem;
+    margin-top: 4rem;
+    border-radius: 5px;
     display: flex;
-    gap: 50px;
+    gap: 100px;
 
     .content {
       flex: 5;
@@ -61,17 +64,12 @@ $lightGreen: #b9e7e7;
       flex: 2;
       display: flex;
       flex-direction: column;
-      gap: 25px;
-
-      h1 {
-        font-size: 20px;
-        color: #555;
-      }
+      gap: 35px;
 
       .post {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 5px;
 
         img {
           width: 100%;
@@ -79,24 +77,9 @@ $lightGreen: #b9e7e7;
           object-fit: cover;
         }
 
-        h2 {
-          color: #555;
-        }
-
-        button {
-          width: max-content;
-          padding: 7.5px 15px;
-          border: none;
-          cursor: pointer;
-          background-color: white;
-          border: 1px solid teal;
-          color: teal;
-
-          &:hover {
-            border: 1px solid white;
-            background-color: $lightGreen;
-            color: black;
-          }
+        span {
+          font-size: small;
+          color: #666
         }
       }
     }
