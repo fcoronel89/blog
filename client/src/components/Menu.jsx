@@ -6,15 +6,15 @@ import { Box, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const Menu = ({ cat }) => {
-  const category = cat ? `?cat=${cat}` : "";
+  const categoryId = cat.id ? `?cat=${cat.id}` : "";
   const {
     isLoading,
     isError,
     error,
     data: posts,
   } = useQuery({
-    queryKey: ["posts", category],
-    queryFn: () => getPosts(category),
+    queryKey: ["posts", categoryId],
+    queryFn: () => getPosts(categoryId),
     select: ({ data }) => {
       return data.map((post) => {
         const date = new Date(post.date);
@@ -36,7 +36,7 @@ const Menu = ({ cat }) => {
 
   return (
     <Box className="menu">
-      <Typography variant="h5" component="h2">Posts de {cat}</Typography>
+      <Typography variant="h5" component="h2">Posts de {cat.description}</Typography>
       {isLoading && "Loading..."}
       {isError && error.message}
       {!isLoading &&

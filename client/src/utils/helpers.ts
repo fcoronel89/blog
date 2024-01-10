@@ -29,3 +29,33 @@ export const getFormatedDateFromString = (date: string) => {
 
   return formattedDate;
 };
+
+export const categories = [
+  { id: "bue", description: "Buenos Aires" },
+  { id: "cat", description: "Catamarca" },
+  { id: "cha", description: "Chaco" },
+  { id: "chu", description: "Chubut" },
+  { id: "cba", description: "Córdoba" },
+  { id: "cor", description: "Corrientes" },
+  { id: "er", description: "Entre Ríos" },
+  { id: "for", description: "Formosa" },
+  { id: "juj", description: "Jujuy" },
+  { id: "lp", description: "La Pampa" },
+  { id: "lr", description: "La Rioja" },
+  { id: "men", description: "Mendoza" },
+  { id: "mis", description: "Misiones" },
+  { id: "nqn", description: "Neuquén" },
+  { id: "rio", description: "Río Negro" },
+  { id: "sal", description: "Salta" },
+  { id: "sj", description: "San Juan" },
+  { id: "sl", description: "San Luis" },
+  { id: "sc", description: "Santa Cruz" },
+  { id: "sf", description: "Santa Fe" },
+  { id: "sgo", description: "Santiago del Estero" },
+  { id: "tf", description: "Tierra del Fuego" },
+  { id: "tuc", description: "Tucumán" },
+];
+
+export const getCategoryById = (id: string) => {
+  return categories.find((category) => category.id === id);
+}

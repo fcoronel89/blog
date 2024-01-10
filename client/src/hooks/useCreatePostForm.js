@@ -12,6 +12,7 @@ import moment from "moment";
 const useCreatePostForm = () => {
   const navigate = useNavigate();
   const state = useLocation().state;
+  
   const {
     register,
     handleSubmit,
@@ -22,10 +23,12 @@ const useCreatePostForm = () => {
     defaultValues: {
       title: state?.title || "",
       desc: state?.desc || "",
-      cat: state?.cat || "",
+      cat: state?.category || "",
     },
     resolver: zodResolver(postSchema),
   });
+
+  const imageUrl = state?.img || "";
 
   const { mutate, isLoading } = useMutation({
     mutationFn: state ? updatePost : createPost,
@@ -57,9 +60,9 @@ const useCreatePostForm = () => {
   const onSubmit = async (data) => {
     if (!isValid) return;
 
-    const imgUrl = data.image
+    const imgUrl = data.image && data.image.file
       ? "uploads/" + (await upload(data.image.file))
-      : state.img || "";
+      : imageUrl || "";
 
     const postData = {
       title: data.title,
@@ -67,6 +70,8 @@ const useCreatePostForm = () => {
       category: data.cat,
       img: imgUrl,
     };
+
+    console.log(postData);
 
     if (state) {
       mutate({ ...postData, id: state._id });

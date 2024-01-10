@@ -4,6 +4,7 @@ import Logo from "../../img/logo.png";
 import { AuthContext } from "../../context/authContext";
 import "./Navbar.scss";
 import { Box, Button, Menu, MenuItem, Fade } from "@mui/material";
+import { categories } from "../../utils/helpers";
 
 const Navbar = () => {
   const { currentUser, logout } = useContext(AuthContext);
@@ -57,38 +58,27 @@ const Navbar = () => {
             open={open}
             onClose={handleClose}
             TransitionComponent={Fade}
+            className="categories-menu"
           >
-            <MenuItem className="link" component={Link} to={"/?cat=art"}>
-              <h6>Rio Negro</h6>
-            </MenuItem>
-            <MenuItem className="link" component={Link} to={"/?cat=science"}>
-              <h6>Jujuy</h6>
-            </MenuItem>
-            <MenuItem className="link" component={Link} to={"/?cat=technology"}>
-              <h6>Neuquen</h6>
-            </MenuItem>
-            <MenuItem className="link" component={Link} to={"/?cat=cinema"}>
-              <h6>Buenos Aires</h6>
-            </MenuItem>
-            <MenuItem className="link" component={Link} to={"/?cat=design"}>
-              <h6>Salta</h6>
-            </MenuItem>
-            <MenuItem className="link" component={Link} to={"/?cat=food"}>
-              <h6>Rio Gallegos</h6>
-            </MenuItem>
-            <MenuItem className="link" component={Link} to={"/?cat=food"}>
-              <h6>Tierra del Fuego</h6>
-            </MenuItem>
+            {categories.map((category) => (
+              <MenuItem
+                className="link"
+                component={Link}
+                to={`/?cat=${category.id}`}
+                onClick={handleClose}
+              >
+                <h6>{category.description}</h6>
+              </MenuItem>
+            ))}
           </Menu>
-
-          <Link className="link" to={"/write"}>
-            Nuevo
-          </Link>
 
           {currentUser ? (
             <>
-            <span>{currentUser?.userName}</span>
-            <span onClick={logout}>Salir</span>
+              <Link className="link" to={"/write"}>
+                Nuevo
+              </Link>
+              <span>{currentUser?.userName}</span>
+              <span onClick={logout}>Salir</span>
             </>
           ) : (
             <Link className="link" to={"/login"}>

@@ -3,7 +3,7 @@ import Edit from "../img/edit.png";
 import Delete from "../img/delete.png";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Menu from "../components/Menu";
-import { getFormatedDateFromString } from "../utils/helpers";
+import { getCategoryById, getFormatedDateFromString } from "../utils/helpers";
 import { AuthContext } from "../context/authContext";
 import { useQuery } from "@tanstack/react-query";
 import { deletePost, getPost } from "../api/posts";
@@ -43,7 +43,6 @@ const Single = () => {
     }
   };
 
-  console.log(post);
   return (
     <>
       {isLoading && "Loading..."}
@@ -75,7 +74,7 @@ const Single = () => {
               </div>
               <BlogPost htmlContent={post.desc} />
             </div>
-            <Menu cat={post.category} />
+            <Menu cat={getCategoryById(post.category)} />
           </div>
         </>
       )}

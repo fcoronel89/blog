@@ -109,94 +109,24 @@ a {
       height: 50px;
     }
   }
+}
 
-  
+::-webkit-scrollbar {
+  width: 12px;
+}
 
-  .add {
-    display: flex;
-    margin-top: 20px;
-    gap: 20px;
+::-webkit-scrollbar-thumb {
+  background-color: #555; /* Dark color for the thumb */
+  border-radius: 6px;
+}
 
-    .content {
-      flex: 5;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+::-webkit-scrollbar-track {
+  background-color: #333; /* Dark color for the track */
+}
 
-      input {
-        padding: 10px;
-        border: 1px solid lightgray;
-      }
-
-      .editorContainer {
-        height: 300px;
-        overflow: scroll;
-        border: 1px solid lightgray;
-
-        .editor {
-          height: 100%;
-          border: none;
-        }
-      }
-    }
-
-    .error {
-      color: red;
-    }
-
-    .menu {
-      flex: 2;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-
-      .item {
-        border: 1px solid lightgray;
-        padding: 10px;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        font-size: 12px;
-        color: #555;
-
-        h1 {
-          font-size: 20px;
-        }
-
-        .file {
-          text-decoration: underline;
-          cursor: pointer;
-        }
-
-        .buttons {
-          display: flex;
-          justify-content: space-between;
-
-          :first-child {
-            cursor: pointer;
-            color: teal;
-            background-color: white;
-            border: 1px solid teal;
-            padding: 3px 5px;
-          }
-
-          :last-child {
-            cursor: pointer;
-            color: white;
-            background-color: teal;
-            border: 1px solid teal;
-            padding: 3px 5px;
-          }
-        }
-
-        .cat {
-          display: flex;
-          align-items: center;
-          gap: 2px;
-          color: teal;
-        }
-      }
-    }
-  }
+/* For Firefox */
+/* Note: As of my last knowledge update, Firefox has limited support for styling scrollbars */
+* {
+  scrollbar-color: #555 #333;
+  scrollbar-width: thin;
 }
