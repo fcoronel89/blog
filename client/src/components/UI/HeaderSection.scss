@@ -1,0 +1,11 @@
+.header-section {
+    height: 35vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.single-header {
+        background-color: #47a2bd;
+    }
+}

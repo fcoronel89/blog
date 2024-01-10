@@ -1,5 +1,5 @@
 import Navbar from "./Navbar/Navbar";
-import { Box, Typography } from "@mui/material";
+import { Box, IconButton, Typography } from "@mui/material";
 import "./HomeHeader.scss";
 
 const HomeHeader = () => {
@@ -12,6 +12,15 @@ const HomeHeader = () => {
         Descubre paisajes, culturas y experiencias únicas que harán de tus
         viajes una aventura inolvidable.
       </Typography>
+      <a href="#posts">
+      <IconButton
+        variant="contained"
+        size="medium"
+        className="button-discover"
+      >
+        Ver Posts
+      </IconButton>
+      </a>
     </section>
   );
 };

@@ -23,7 +23,7 @@ const Home = () => {
   return (
     <section className="home">
       <HomeHeader />
-      <Box className="container posts">
+      <Box className="container posts" id="posts">
         <Grid container columnSpacing={3} rowSpacing={3}>
           {isLoading && "Loading..."}
           {isError && error.message}

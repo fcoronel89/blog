@@ -9,6 +9,10 @@ import { AuthContext } from "../context/authContext";
 import { useQuery } from "@tanstack/react-query";
 import { deletePost, getPost } from "../api/posts";
 import { queryClient } from "../main";
+import HeaderSection from "../components/UI/HeaderSection";
+import { Typography } from "@mui/material";
+import { frontendUrl } from "../utils/helpers";
+import './Single.scss';
 
 const Single = () => {
   const navigate = useNavigate();
@@ -36,36 +40,43 @@ const Single = () => {
     }
   };
 
+  console.log(post);
   return (
-    <div className="single container">
+    <>
       {isLoading && "Loading..."}
       {isError && error.message}
       {!isLoading && !isError && post && (
         <>
-          <div className="content">
-            {post.img && <img src={post.img} alt="" />}
-            <div className="user">
-              {post.userImg && <img src={post.userImg} alt="" />}
-              <div className="info">
-                <span>{post.userName}</span>
-                <p>Posted {moment(post.date).fromNow()}</p>
-              </div>
-              {currentUser?.userName === post.userName && (
-                <div className="edit">
-                  <Link to={`/write?edit=${id}`} state={post}>
-                    <img src={Edit} alt="" />
-                  </Link>
-                  <img onClick={handleDelete} src={Delete} alt="" />
+          <HeaderSection cssClasses={"single-header"}>
+            <Typography variant="h2" component="h1">
+              {post?.title}
+            </Typography>
+          </HeaderSection>
+          <div className="single container">
+            <div className="content">
+              {post.img && <img src={frontendUrl + post.img} alt="" />}
+              <div className="user">
+                {post.userImg && <img src={post.userImg} alt="" />}
+                <div className="info">
+                  <span>{post.userName}</span>
+                  <p>Posted {moment(post.date).fromNow()}</p>
                 </div>
-              )}
+                {currentUser?.userName === post.userName && (
+                  <div className="edit">
+                    <Link to={`/write?edit=${id}`} state={post}>
+                      <img src={Edit} alt="" />
+                    </Link>
+                    <img onClick={handleDelete} src={Delete} alt="" />
+                  </div>
+                )}
+              </div>
+              {getTextFromHTML(post.desc)}
             </div>
-            <h1>{post.title}</h1>
-            {getTextFromHTML(post.desc)}
+            <Menu cat={post.category} />
           </div>
-          <Menu cat={post.category} />
         </>
       )}
-    </div>
+    </>
   );
 };
 
