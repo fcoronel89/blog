@@ -1,11 +1,10 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { getPosts } from "../api/posts";
+import { getPosts } from "../../api/posts";
 import "./Home.scss";
 import { Box, Grid, Typography } from "@mui/material";
-import HomeHeader from "../components/HomeHeader";
-import "../components/HomeHeader.scss";
+import HomeHeader from "../../components/HomeHeader";
 
 const Home = () => {
   const cat = useLocation().search;

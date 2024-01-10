@@ -58,4 +58,4 @@ export const categories = [
 
 export const getCategoryById = (id: string) => {
   return categories.find((category) => category.id === id);
-}
+};

@@ -3,11 +3,11 @@ import React from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Controller } from "react-hook-form";
-import useCreatePostForm from "../hooks/useCreatePostForm";
-import HeaderSection from "../components/UI/HeaderSection";
+import useCreatePostForm from "../../hooks/useCreatePostForm";
+import HeaderSection from "../../components/UI/HeaderSection";
 import { Box, Button, Typography } from "@mui/material";
 import "./Write.scss";
-import { categories } from "../utils/helpers";
+import { categories } from "../../utils/helpers";
 
 const Write = () => {
   const { register, handleSubmit, errors, control } = useCreatePostForm();

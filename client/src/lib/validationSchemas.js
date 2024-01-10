@@ -21,9 +21,9 @@ export const signUpSchema = z.object({
 const idArray = categories.map(province => province.id);
 
 export const postSchema = z.object({
-  title: z.string().min(1, "title is required"),
-  desc: z.string().min(1, "description is required").refine((value) => value.trim().length > 0, {
-    message: "Please enter a valid description.",
+  title: z.string().min(1, "Ingresar titulo"),
+  desc: z.string().min(1, "Ingresar descripcion").refine((value) => value.trim().length > 0, {
+    message: "Ingresar descripcion validad.",
   }),
   cat: z
     .enum(idArray, "category is required")
@@ -32,7 +32,7 @@ export const postSchema = z.object({
     }),
   image: z.object({
     file: z.unknown().refine((value) => value instanceof File || value === undefined, {
-      message: "Please select an image file.",
+      message: "Seleccionar imagen",
     }),
   }),
 });

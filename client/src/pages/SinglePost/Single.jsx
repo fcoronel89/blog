@@ -1,16 +1,16 @@
 import React, { useContext, } from "react";
-import Edit from "../img/edit.png";
-import Delete from "../img/delete.png";
+import Edit from "../../img/edit.png";
+import Delete from "../../img/delete.png";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import Menu from "../components/Menu";
-import { getCategoryById, getFormatedDateFromString } from "../utils/helpers";
-import { AuthContext } from "../context/authContext";
+import Menu from "../../components/Menu";
+import { getCategoryById, getFormatedDateFromString } from "../../utils/helpers";
+import { AuthContext } from "../../context/authContext";
 import { useQuery } from "@tanstack/react-query";
-import { deletePost, getPost } from "../api/posts";
-import { queryClient } from "../main";
-import HeaderSection from "../components/UI/HeaderSection";
+import { deletePost, getPost } from "../../api/posts";
+import { queryClient } from "../../main";
+import HeaderSection from "../../components/UI/HeaderSection";
 import { Typography } from "@mui/material";
-import { frontendUrl } from "../utils/helpers";
+import { frontendUrl } from "../../utils/helpers";
 import "./Single.scss";
 
 const BlogPost = ({ htmlContent }) => {

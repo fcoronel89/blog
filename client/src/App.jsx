@@ -1,9 +1,9 @@
 import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Register from "./pages/Register";
-import Login from "./pages/Login";
-import Single from "./pages/Single";
-import Write from "./pages/Write";
+import Home from "./pages/Home/Home";
+import Register from "./pages/Auth/Register";
+import Login from "./pages/Auth/Login";
+import Single from "./pages/SinglePost/Single";
+import Write from "./pages/ManagePost/Write";
 import Layout from "./pages/Layout";
 import "./style.scss";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
