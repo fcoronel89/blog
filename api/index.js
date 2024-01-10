@@ -4,7 +4,7 @@ import { mongoConnect } from "./services/mongo.js";
 import dotenv from "dotenv";
 dotenv.config();
 
-const port = process.env.PORT || 3001; // Choose a suitable port
+const port = process.env.PORT || 3000; // Choose a suitable port
 let server;
 
 async function startServer() {

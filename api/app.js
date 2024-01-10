@@ -3,11 +3,13 @@ import cors from "cors";
 import api from "./routes/api.js";
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
+import dotenv from "dotenv";
+dotenv.config();
 const app = express();
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: process.env.FRONTEND_URL || "http://localhost:5173",
     credentials: true,
   })
 );
