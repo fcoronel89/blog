@@ -1,4 +1,4 @@
-$lightGreen: #b9e7e7;
+$lightBlue: #47a2bd;
 
 .navbar {
   position: fixed;
@@ -6,7 +6,7 @@ $lightGreen: #b9e7e7;
   z-index: 999;
 
   &.scrolled {
-    background-color: #47a2bd;
+    background-color: $lightBlue;
   }
 
   .nav-container {
@@ -42,23 +42,6 @@ $lightGreen: #b9e7e7;
         font-size: inherit;
       }
 
-      .write {
-        background-color: $lightGreen;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 300;
-        border: 1px solid white;
-
-        &:hover {
-          color: teal;
-          background-color: white;
-          border: 1px solid teal;
-        }
-      }
     }
   }
 }

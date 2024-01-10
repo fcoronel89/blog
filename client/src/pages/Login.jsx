@@ -2,28 +2,30 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import useLoginForm from "../hooks/useLoginForm";
+import './Auth.scss'
+import { Button, Typography } from "@mui/material";
 
 const Login = () => {
   const { register, handleSubmit, errors, isSubmitting } = useLoginForm();
 
   return (
-    <div className="auth">
-      <h1>Login</h1>
+    <div className="login">
+      <Typography variant="h3" component="h1" mb={3}>Ingresar</Typography>
       <form onSubmit={handleSubmit}>
-        <input {...register("userName")} type="text" placeholder="userName" />
+        <input {...register("userName")} type="text" placeholder="Nombre de Usuario" />
         {errors.userName && <p>{errors.userName.message}</p>}
         <input
           {...register("password")}
           type="password"
-          placeholder="password"
+          placeholder="Contraseña"
         />
         {errors.password && <p>{errors.password.message}</p>}
-        <button type="submit" disabled={isSubmitting}>
+        <Button variant="contained" type="submit" disabled={isSubmitting}>
           Login
-        </button>
+        </Button>
         {errors.general && <p>{errors.general.message}</p>}
         <span>
-          Don't have an account? <Link to="/register">Register</Link>
+          ¿No tienes una cuenta? <Link to="/register">Crear</Link>
         </span>
       </form>
     </div>

@@ -1,0 +1,56 @@
+$lightBlue: #47a2bd;
+.login {
+    color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: $lightBlue;
+    flex-direction: column;
+
+    a{ color: $lightBlue; }
+
+    h1 {
+        color: white;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      padding: 50px1rem;
+      background-color: white;
+      border-radius: 10px;
+      width: 30rem;
+      padding: 3rem 2rem 2rem;
+
+      input {
+        padding: 10px;
+        border: none;
+        border-bottom: 1px solid gray;
+        margin-bottom: 1rem;
+      }
+
+      button {
+        border: none;
+        background-color: $lightBlue;
+        color: white;
+        cursor: pointer;
+        margin-top: 1rem;
+        margin-bottom: 1.3rem;
+      }
+
+      span {
+        text-align: center;
+      }
+
+      span,
+      p {
+        font-size: 12px;
+      }
+
+      p {
+        color: red;
+        margin-bottom: 1rem;
+      }
+    }
+  }
