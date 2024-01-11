@@ -3,6 +3,8 @@
 .header {
   height: 100vh;
   width: 100%;
+  padding: 0 1rem;
+  text-align: center;
   background: {
     image: url("https://blog-frontend-80t9.onrender.com/bgheader.jpg");
     position: center;
@@ -46,4 +48,22 @@
       background-color: #3b8faa;
     }
   }
+}
+
+@media screen and (max-width: 600px) {
+  .header {
+    h3 {
+      font-size: 2.1rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+    }
+
+    .button-discover {
+      font-size: 1rem;
+    }
+
+  }
+  
 }

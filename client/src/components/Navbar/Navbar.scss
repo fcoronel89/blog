@@ -41,7 +41,38 @@ $lightBlue: #47a2bd;
         text-transform: capitalize;
         font-size: inherit;
       }
+    }
+  }
 
+  .menuhamburger, .menu-mobile {
+    display: none;
+  }
+
+  .menu-mobile {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 120px;
+    background-color: #47a2bd;
+    height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 1rem;
+    overflow-y: auto;
+
+    .accordion {
+      background-color: #47a2bd;
+      background-image: none;
+      border: 0;
+      box-shadow: none;
+      padding: 0;
+      margin: 0;
+      min-height: 20px;
+
+      h6 {
+        margin-bottom: .2rem;
+      }
     }
   }
 }
@@ -49,5 +80,25 @@ $lightBlue: #47a2bd;
 .categories-menu {
   .MuiPaper-root {
     max-height: 200px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .navbar {
+    padding: 0.5rem 1rem;
+    .nav-container {
+      .logo img {
+        width: 100px;
+      }
+      .links {
+        display: none;
+      }
+    }
+    .menuhamburger {
+      display: block;
+    }
+    .menu-mobile.active {
+      display: flex;
+    }
   }
 }

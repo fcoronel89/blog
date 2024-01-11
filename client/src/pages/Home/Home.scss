@@ -47,3 +47,11 @@
     }
   }
 }
+
+@media screen and (max-width: 600px) {
+  .home { 
+    .post-card {
+      height: 300px;
+    }
+  }
+}

@@ -9,3 +9,15 @@
         background-color: #47a2bd;
     }
 }
+
+@media screen and (max-width: 600px) {
+    .header-section {
+        height: 25vh;
+        padding: 1rem;
+        text-align: center;
+      h1 {
+        font-size: 2rem;
+        margin-top: 1.7rem;
+      }
+    }
+  }
